@@ -45,8 +45,3 @@ class String:
                 newstr.append(replacement)
         self.text = "".join(newstr)
 
-
-
-str = String('Vlbd a fost lb scoblb')
-str.replace_char('b', '')
-print str.text
