@@ -45,3 +45,5 @@ class String:
                 newstr.append(replacement)
         self.text = "".join(newstr)
 
+    def lowercase(self):
+        self.text = self.text.lower()
