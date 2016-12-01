@@ -46,6 +46,9 @@ def test_searching_for_characters_at_the_beggining_and_end_of_the_string():
     assert position_list == [0, 3]
 
 def test_searching_for_character_in_the_string():
+    """Searching a character in a string should retrun a list containing the position
+    of the relevant character in the string, with the positions being numbered from
+    0 to len(string0 - 1"""
     teststr = String('poop')
     position_list = teststr.search_for_char('o')
     assert position_list == [1, 2]
