@@ -1,29 +1,25 @@
+# -*- coding: utf-8 -*-
 from string import String
 
 class Word(String):
 
     bad_chars = ['.', '?', '!', ':', ';', '-',
-                 '(', ')', '[' ']', '"', '/', ',']
+                 '(', ')', '[' ']', '"', '/', ',', '”',
+                 '*', '#']
 
     def __init__(self, text):
         self.text = text
+        self.bad_chars.append(range(0, 9))
 
     def evaluate_word(self):
         """Check in order to see if a word contains any invalid characters"""
 
         newstr = list()
-        for index in range(0, len(self.text) - 1):
-           # print len(self.text)
-            #print self.text
+        index = 0
+        while index < len(self.text):
             if (self.text[index] in self.bad_chars):
                 self.delete_char(index)
-                print index
-
-
-
-str = raw_input()
-str = Word(str)
-str.evaluate_word()
-print str.text
+                index = index - 1
+            index = index + 1
 
 
