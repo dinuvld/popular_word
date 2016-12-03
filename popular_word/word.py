@@ -6,6 +6,7 @@ class Word(String):
     bad_chars = ['.', '?', '!', ':', ';', '-',
                  '(', ')', '[' ']', '"', '/', ',', '”',
                  '*', '#', '\'']
+    sentence_end = ['.', '!', '?']
 
     def __init__(self, text):
         self.text = text
@@ -34,7 +35,7 @@ class Word(String):
         first = True
 
         for index in range(0, text_length):
-            if self.text[index] == '.':
+            if self.text[index] in self.sentence_end:
                 if first is True and index == text_length - 1:
                     return True
                 else:
@@ -50,7 +51,7 @@ class Word(String):
         while index < text_length:
             if self.__should_delete_char(self.text, index):
                 self.delete_char(index)
-                text_length -=  1
+                text_length -= 1
                 index -= 1
             index += 1
 
