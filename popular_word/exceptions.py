@@ -1,0 +1,2 @@
+class WordNotInDictionary(Exception):
+    pass
