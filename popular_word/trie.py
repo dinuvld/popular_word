@@ -1,9 +1,8 @@
-#from exceptions import WordNotInDictionary
-
+import random
+import string
 class Node():
 
     letter = ""
-    prev_letter = ""
 
     def __init__(self, letter):
         self.letter = letter
@@ -18,21 +17,27 @@ class Trie():
     def __init__(self):
         self.root = Node("")
 
-    def __add_word(self, word, current_node, index):
+    def __add_word(self, word, current_node, index, prev, change_prev):
+
+        found = False
+
+        if change_prev is True:
+            current_node.prev_node = prev
 
         if index == len(word):
             current_node.counter += 1
             return
 
-        found = False
         for node in current_node.next_node:
+
             if node.letter == word[index]:
                 found = True
-                self.__add_word(word, node, index + 1)
+                self.__add_word(word, node, index + 1, current_node, True)
 
         if found == False:
             current_node.next_node.append(Node(word[index]))
-            self.__add_word(word, current_node, index)
+            self.__add_word(word, current_node, index, current_node, False)
+
 
 
     def __number_of_apparitions(self, word, current_node, index):
@@ -48,11 +53,8 @@ class Trie():
 
 
     def add_word(self, word):
-        self.__add_word(word, self.root, 0)
+        self.__add_word(word, self.root, 0, self.root, True)
 
     def number_of_apparitions(self, word):
-        return self.__number_of_apparitions(word, self.root, 0)
-
-
-
+        return self.__number_of_apparitions(word, self.root, 0)w
 
