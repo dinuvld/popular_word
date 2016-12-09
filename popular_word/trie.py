@@ -43,6 +43,7 @@ class Trie():
     def __number_of_apparitions(self, word, current_node, index):
 
         if index == len(word):
+            print "Poop: ", self.word_from_node(current_node)
             return current_node.counter
 
         for node in current_node.next_node:
@@ -51,10 +52,14 @@ class Trie():
 
         return "error"
 
-
     def add_word(self, word):
         self.__add_word(word, self.root, 0, self.root, True)
 
     def number_of_apparitions(self, word):
-        return self.__number_of_apparitions(word, self.root, 0)w
+        return self.__number_of_apparitions(word, self.root, 0)
 
+    def word_from_node(self, node):
+        str = ""
+        while node.letter != '':
+            if node.letter != '':
+                return str + node.letter + self.word_from_node(node.prev_node)
