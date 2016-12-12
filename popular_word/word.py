@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from string import String
+from _string import String
 
 class Word(String):
 

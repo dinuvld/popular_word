@@ -1,5 +1,6 @@
 import random
 import string
+import time
 class Node():
 
     letter = ""
@@ -43,7 +44,6 @@ class Trie():
     def __number_of_apparitions(self, word, current_node, index):
 
         if index == len(word):
-            print "Poop: ", self.word_from_node(current_node)
             return current_node.counter
 
         for node in current_node.next_node:
@@ -52,6 +52,12 @@ class Trie():
 
         return "error"
 
+    def __word_from_node(self, node):
+        str = ''
+        if node.letter != '':
+            return str + node.letter + self.__word_from_node(node.prev_node)
+        return ''
+
     def add_word(self, word):
         self.__add_word(word, self.root, 0, self.root, True)
 
@@ -59,7 +65,19 @@ class Trie():
         return self.__number_of_apparitions(word, self.root, 0)
 
     def word_from_node(self, node):
-        str = ""
-        while node.letter != '':
-            if node.letter != '':
-                return str + node.letter + self.word_from_node(node.prev_node)
+        str = self.__word_from_node(node)
+        return str[::-1]
+
+start = time.time()
+graf = Trie()
+for i in range (0, 150000000):
+    procent = 1
+    if i % 1500000 == 0:
+        print procent, '%'
+        procent += 1
+    rint = random.randint(3, 8)
+    str = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(rint))
+    graf.add_word('str')
+stop = time.time()
+final = stop - start
+print 'Execution time ', final

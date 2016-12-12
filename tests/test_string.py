@@ -1,4 +1,4 @@
-from ..popular_word.string import String
+from ..popular_word._string import String
 
 def test_insert_at_the_beggining_of_the_string():
     teststr = String('poop')
