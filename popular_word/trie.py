@@ -39,8 +39,6 @@ class Trie():
             current_node.next_node.append(Node(word[index]))
             self.__add_word(word, current_node, index, current_node, False)
 
-
-
     def __number_of_apparitions(self, word, current_node, index):
 
         if index == len(word):
@@ -67,17 +65,3 @@ class Trie():
     def word_from_node(self, node):
         str = self.__word_from_node(node)
         return str[::-1]
-
-start = time.time()
-graf = Trie()
-for i in range (0, 150000000):
-    procent = 1
-    if i % 1500000 == 0:
-        print procent, '%'
-        procent += 1
-    rint = random.randint(3, 8)
-    str = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(rint))
-    graf.add_word('str')
-stop = time.time()
-final = stop - start
-print 'Execution time ', final
