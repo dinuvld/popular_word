@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from _string import String
 
+
 class Word(String):
 
     bad_chars = ['.', '?', '!', ':', ';', '-',

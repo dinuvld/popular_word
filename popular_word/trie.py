@@ -14,9 +14,12 @@ class Node():
 
 class Trie():
 
+    max = list()
+    max_val= 0
 
     def __init__(self):
         self.root = Node("")
+
 
     def __add_word(self, word, current_node, index, prev, change_prev):
 
@@ -56,8 +59,15 @@ class Trie():
             return str + node.letter + self.__word_from_node(node.prev_node)
         return ''
 
+    def __find_maximum(self, root):
+        if root.counter > self.max_val:
+            self.max.append(root)
+        for node in root.next_node:
+            self.__find_maximum(node)
+
+
     def add_word(self, word):
-        self.__add_word(word, self.root, 0, self.root, True)
+        self.__add_word(word, self.root, 0, None, True)
 
     def number_of_apparitions(self, word):
         return self.__number_of_apparitions(word, self.root, 0)
@@ -65,3 +75,5 @@ class Trie():
     def word_from_node(self, node):
         str = self.__word_from_node(node)
         return str[::-1]
+    def find_maximum(self):
+        self.__find_maximum(self.root)
